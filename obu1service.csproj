@@ -1,0 +1,1118 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>
+    </ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{3477ED01-CFA3-46B9-AD72-F5E5DD2A3997}</ProjectGuid>
+    <ProjectTypeGuids>{349c5851-65df-11da-9384-00065b846f21};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>obu1service</RootNamespace>
+    <AssemblyName>obu1service</AssemblyName>
+    <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
+    <WcfConfigValidationEnabled>True</WcfConfigValidationEnabled>
+    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
+    <UseIISExpress>true</UseIISExpress>
+    <IISExpressSSLPort />
+    <IISExpressAnonymousAuthentication />
+    <IISExpressWindowsAuthentication />
+    <IISExpressUseClassicPipelineMode />
+    <UseGlobalApplicationHostFile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Microsoft.AI.Agent.Intercept, Version=1.2.1.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.ApplicationInsights.Agent.Intercept.1.2.1\lib\net45\Microsoft.AI.Agent.Intercept.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.AI.DependencyCollector, Version=2.1.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.ApplicationInsights.DependencyCollector.2.1.0\lib\net45\Microsoft.AI.DependencyCollector.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.AI.PerfCounterCollector, Version=2.1.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.ApplicationInsights.PerfCounterCollector.2.1.0\lib\net45\Microsoft.AI.PerfCounterCollector.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.AI.ServerTelemetryChannel, Version=2.1.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.ApplicationInsights.WindowsServer.TelemetryChannel.2.1.0\lib\net45\Microsoft.AI.ServerTelemetryChannel.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.AI.Web, Version=2.1.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.ApplicationInsights.Web.2.1.0\lib\net45\Microsoft.AI.Web.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.AI.WindowsServer, Version=2.1.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.ApplicationInsights.WindowsServer.2.1.0\lib\net45\Microsoft.AI.WindowsServer.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.ApplicationInsights, Version=2.1.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.ApplicationInsights.2.1.0\lib\net45\Microsoft.ApplicationInsights.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="MySql.Data, Version=6.9.9.0, Culture=neutral, PublicKeyToken=c5687fc88969c44d, processorArchitecture=MSIL" />
+    <Reference Include="Newtonsoft.Json, Version=6.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.6.0.4\lib\net45\Newtonsoft.Json.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="RabbitMQ.Client">
+      <HintPath>..\..\..\..\Downloads\rabbitmq-dotnet-client-3.6.6-dotnet-4.5\bin\RabbitMQ.Client.dll</HintPath>
+    </Reference>
+    <Reference Include="RabbitMQ.ServiceModel">
+      <HintPath>..\..\..\..\Downloads\rabbitmq-dotnet-client-3.6.6-dotnet-4.5\bin\RabbitMQ.ServiceModel.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Net.Http.Formatting, Version=5.2.3.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebApi.Client.5.2.3\lib\net45\System.Net.Http.Formatting.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Web.DynamicData" />
+    <Reference Include="System.Web.Entity" />
+    <Reference Include="System.Web.ApplicationServices" />
+    <Reference Include="System" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.EnterpriseServices" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.ServiceModel" />
+    <Reference Include="System.ServiceModel.Web" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Web.Extensions" />
+    <Reference Include="System.Web.Http, Version=5.2.3.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebApi.Core.5.2.3\lib\net45\System.Web.Http.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Web.Http.WebHost, Version=5.2.3.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebApi.WebHost.5.2.3\lib\net45\System.Web.Http.WebHost.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Web.Services" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Xml.Linq" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Properties\PublishProfiles\obu1.pubxml" />
+    <None Include="Service References\TraasReference\configuration91.svcinfo" />
+    <None Include="Service References\TraasReference\configuration.svcinfo" />
+    <Content Include="Service References\TraasReference\obu1service.TraasReference.addOptionResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Service References\TraasReference\obu1service.TraasReference.ArealDetector_getIDCountResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Service References\TraasReference\obu1service.TraasReference.ArealDetector_getIDListResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Service References\TraasReference\obu1service.TraasReference.ArealDetector_getJamLengthMetersResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Service References\TraasReference\obu1service.TraasReference.ArealDetector_getJamLengthVehicleResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Service References\TraasReference\obu1service.TraasReference.ArealDetector_getLastStepMeanSpeedResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Service References\TraasReference\obu1service.TraasReference.ArealDetector_getLastStepOccupancyResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Service References\TraasReference\obu1service.TraasReference.Edge_adaptTraveltimeResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Service References\TraasReference\obu1service.TraasReference.Edge_getAdaptedTraveltimeResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Service References\TraasReference\obu1service.TraasReference.Edge_getCO2EmissionResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Service References\TraasReference\obu1service.TraasReference.Edge_getCOEmissionResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Service References\TraasReference\obu1service.TraasReference.Edge_getEffortResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Service References\TraasReference\obu1service.TraasReference.Edge_getElectricityConsumptionResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Service References\TraasReference\obu1service.TraasReference.Edge_getFuelConsumptionResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Service References\TraasReference\obu1service.TraasReference.Edge_getHCEmissionResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Service References\TraasReference\obu1service.TraasReference.Edge_getIDCountResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Service References\TraasReference\obu1service.TraasReference.Edge_getIDListResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Service References\TraasReference\obu1service.TraasReference.Edge_getLastStepHaltingNumberResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Service References\TraasReference\obu1service.TraasReference.Edge_getLastStepLengthResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Service References\TraasReference\obu1service.TraasReference.Edge_getLastStepMeanSpeedResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Service References\TraasReference\obu1service.TraasReference.Edge_getLastStepOccupancyResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Service References\TraasReference\obu1service.TraasReference.Edge_getLastStepVehicleIDsResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Service References\TraasReference\obu1service.TraasReference.Edge_getLastStepVehicleNumberResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Service References\TraasReference\obu1service.TraasReference.Edge_getNoiseEmissionResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Service References\TraasReference\obu1service.TraasReference.Edge_getNOxEmissionResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Service References\TraasReference\obu1service.TraasReference.Edge_getPMxEmissionResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Service References\TraasReference\obu1service.TraasReference.Edge_getTraveltimeResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Service References\TraasReference\obu1service.TraasReference.Edge_getWaitingTimeResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Service References\TraasReference\obu1service.TraasReference.Edge_setEffortResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Service References\TraasReference\obu1service.TraasReference.Edge_setMaxSpeedResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Service References\TraasReference\obu1service.TraasReference.get_StatusResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Service References\TraasReference\obu1service.TraasReference.GUI_clearPendingResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Service References\TraasReference\obu1service.TraasReference.GUI_getBoundaryResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Service References\TraasReference\obu1service.TraasReference.GUI_getIDListResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Service References\TraasReference\obu1service.TraasReference.GUI_getOffsetResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Service References\TraasReference\obu1service.TraasReference.GUI_getSchemaResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Service References\TraasReference\obu1service.TraasReference.GUI_getZoomResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Service References\TraasReference\obu1service.TraasReference.GUI_screenshotResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Service References\TraasReference\obu1service.TraasReference.GUI_setBoundaryResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Service References\TraasReference\obu1service.TraasReference.GUI_setOffsetResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Service References\TraasReference\obu1service.TraasReference.GUI_setSchemaResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Service References\TraasReference\obu1service.TraasReference.GUI_setZoomResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Service References\TraasReference\obu1service.TraasReference.GUI_trackVehicleResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Service References\TraasReference\obu1service.TraasReference.Inductionloop_getIDCountResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Service References\TraasReference\obu1service.TraasReference.Inductionloop_getIDListResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Service References\TraasReference\obu1service.TraasReference.Inductionloop_getLaneIDResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Service References\TraasReference\obu1service.TraasReference.Inductionloop_getLastStepMeanLengthResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Service References\TraasReference\obu1service.TraasReference.Inductionloop_getLastStepMeanSpeedResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Service References\TraasReference\obu1service.TraasReference.Inductionloop_getLastStepOccupancyResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Service References\TraasReference\obu1service.TraasReference.Inductionloop_getLastStepVehicleIDsResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Service References\TraasReference\obu1service.TraasReference.Inductionloop_getLastStepVehicleNumberResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Service References\TraasReference\obu1service.TraasReference.Inductionloop_getPositionResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Service References\TraasReference\obu1service.TraasReference.Inductionloop_getTimeSinceDetectionResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Service References\TraasReference\obu1service.TraasReference.Inductionloop_getVehicleDataResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Service References\TraasReference\obu1service.TraasReference.Junction_getIDCountResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Service References\TraasReference\obu1service.TraasReference.Junction_getIDListResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Service References\TraasReference\obu1service.TraasReference.Junction_getPositionResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Service References\TraasReference\obu1service.TraasReference.Junction_getShapeResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Service References\TraasReference\obu1service.TraasReference.Lane_getAllowedResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Service References\TraasReference\obu1service.TraasReference.Lane_getCO2EmissionResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Service References\TraasReference\obu1service.TraasReference.Lane_getCOEmissionResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Service References\TraasReference\obu1service.TraasReference.Lane_getDisallowedResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Service References\TraasReference\obu1service.TraasReference.Lane_getEdgeIDResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Service References\TraasReference\obu1service.TraasReference.Lane_getElectricityConsumptionResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Service References\TraasReference\obu1service.TraasReference.Lane_getFuelConsumptionResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Service References\TraasReference\obu1service.TraasReference.Lane_getHCEmissionResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Service References\TraasReference\obu1service.TraasReference.Lane_getIDCountResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Service References\TraasReference\obu1service.TraasReference.Lane_getIDListResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Service References\TraasReference\obu1service.TraasReference.Lane_getLastStepHaltingNumberResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Service References\TraasReference\obu1service.TraasReference.Lane_getLastStepLengthResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Service References\TraasReference\obu1service.TraasReference.Lane_getLastStepMeanSpeedResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Service References\TraasReference\obu1service.TraasReference.Lane_getLastStepOccupancyResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Service References\TraasReference\obu1service.TraasReference.Lane_getLastStepVehicleIDsResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Service References\TraasReference\obu1service.TraasReference.Lane_getLastStepVehicleNumberResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Service References\TraasReference\obu1service.TraasReference.Lane_getLengthResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Service References\TraasReference\obu1service.TraasReference.Lane_getLinkNumberResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Service References\TraasReference\obu1service.TraasReference.Lane_getLinksResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Service References\TraasReference\obu1service.TraasReference.Lane_getMaxSpeedResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Service References\TraasReference\obu1service.TraasReference.Lane_getNoiseEmissionResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Service References\TraasReference\obu1service.TraasReference.Lane_getNOxEmissionResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Service References\TraasReference\obu1service.TraasReference.Lane_getPMxEmissionResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Service References\TraasReference\obu1service.TraasReference.Lane_getShapeResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Service References\TraasReference\obu1service.TraasReference.Lane_getTraveltimeResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Service References\TraasReference\obu1service.TraasReference.Lane_getWaitingTimeResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Service References\TraasReference\obu1service.TraasReference.Lane_getWidthResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Service References\TraasReference\obu1service.TraasReference.Lane_setAllowedResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Service References\TraasReference\obu1service.TraasReference.Lane_setDisallowedResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Service References\TraasReference\obu1service.TraasReference.Lane_setLengthResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Service References\TraasReference\obu1service.TraasReference.Lane_setMaxSpeedResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Service References\TraasReference\obu1service.TraasReference.LastActionTimeResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Service References\TraasReference\obu1service.TraasReference.Multientryexit_getIDCountResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Service References\TraasReference\obu1service.TraasReference.Multientryexit_getIDListResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Service References\TraasReference\obu1service.TraasReference.Multientryexit_getLastStepHaltingNumberResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Service References\TraasReference\obu1service.TraasReference.Multientryexit_getLastStepMeanSpeedResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Service References\TraasReference\obu1service.TraasReference.Multientryexit_getLastStepVehicleIDsResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Service References\TraasReference\obu1service.TraasReference.Multientryexit_getLastStepVehicleNumberResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Service References\TraasReference\obu1service.TraasReference.Person_getAngleResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Service References\TraasReference\obu1service.TraasReference.Person_getColorResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Service References\TraasReference\obu1service.TraasReference.Person_getIDCountResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Service References\TraasReference\obu1service.TraasReference.Person_getIDListResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Service References\TraasReference\obu1service.TraasReference.Person_getLanePositionResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Service References\TraasReference\obu1service.TraasReference.Person_getLengthResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Service References\TraasReference\obu1service.TraasReference.Person_getMinGapResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Service References\TraasReference\obu1service.TraasReference.Person_getPersonNumberResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Service References\TraasReference\obu1service.TraasReference.Person_getPosition3DResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Service References\TraasReference\obu1service.TraasReference.Person_getPositionResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Service References\TraasReference\obu1service.TraasReference.Person_getRoadIDResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Service References\TraasReference\obu1service.TraasReference.Person_getSpeedResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Service References\TraasReference\obu1service.TraasReference.Person_getTypeIDResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Service References\TraasReference\obu1service.TraasReference.Person_getWaitingTimeResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Service References\TraasReference\obu1service.TraasReference.Poi_addResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Service References\TraasReference\obu1service.TraasReference.Poi_getColorResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Service References\TraasReference\obu1service.TraasReference.Poi_getIDCountResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Service References\TraasReference\obu1service.TraasReference.Poi_getIDListResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Service References\TraasReference\obu1service.TraasReference.Poi_getPositionResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Service References\TraasReference\obu1service.TraasReference.Poi_getTypeResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Service References\TraasReference\obu1service.TraasReference.Poi_removeResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Service References\TraasReference\obu1service.TraasReference.Poi_setColorResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Service References\TraasReference\obu1service.TraasReference.Poi_setPositionResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Service References\TraasReference\obu1service.TraasReference.Poi_setTypeResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Service References\TraasReference\obu1service.TraasReference.Polygon_addResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Service References\TraasReference\obu1service.TraasReference.Polygon_getColorResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Service References\TraasReference\obu1service.TraasReference.Polygon_getIDCountResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Service References\TraasReference\obu1service.TraasReference.Polygon_getIDListResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Service References\TraasReference\obu1service.TraasReference.Polygon_getShapeResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Service References\TraasReference\obu1service.TraasReference.Polygon_getTypeResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Service References\TraasReference\obu1service.TraasReference.Polygon_removeResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Service References\TraasReference\obu1service.TraasReference.Polygon_setColorResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Service References\TraasReference\obu1service.TraasReference.Polygon_setShapeResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Service References\TraasReference\obu1service.TraasReference.Polygon_setTypeResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Service References\TraasReference\obu1service.TraasReference.Route_addResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Service References\TraasReference\obu1service.TraasReference.Route_getEdgesResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Service References\TraasReference\obu1service.TraasReference.Route_getIDCountResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Service References\TraasReference\obu1service.TraasReference.Route_getIDListResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Service References\TraasReference\obu1service.TraasReference.setConfigResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Service References\TraasReference\obu1service.TraasReference.setSumoBinaryResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Service References\TraasReference\obu1service.TraasReference.Simulation_convert2DResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Service References\TraasReference\obu1service.TraasReference.Simulation_convert3DResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Service References\TraasReference\obu1service.TraasReference.Simulation_convertGeoResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Service References\TraasReference\obu1service.TraasReference.Simulation_convertRoadResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Service References\TraasReference\obu1service.TraasReference.Simulation_getArrivedIDListResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Service References\TraasReference\obu1service.TraasReference.Simulation_getArrivedNumberResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Service References\TraasReference\obu1service.TraasReference.Simulation_getBusStopWaitingResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Service References\TraasReference\obu1service.TraasReference.Simulation_getCurrentTimeResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Service References\TraasReference\obu1service.TraasReference.Simulation_getDeltaTResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Service References\TraasReference\obu1service.TraasReference.Simulation_getDepartedIDListResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Service References\TraasReference\obu1service.TraasReference.Simulation_getDepartedNumberResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Service References\TraasReference\obu1service.TraasReference.Simulation_getDistance2DResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Service References\TraasReference\obu1service.TraasReference.Simulation_getDistanceRoadResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Service References\TraasReference\obu1service.TraasReference.Simulation_getEndingTeleportIDListResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Service References\TraasReference\obu1service.TraasReference.Simulation_getEndingTeleportNumberResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Service References\TraasReference\obu1service.TraasReference.Simulation_getLoadedIDListResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Service References\TraasReference\obu1service.TraasReference.Simulation_getLoadedNumberResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Service References\TraasReference\obu1service.TraasReference.Simulation_getMinExpectedNumberResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Service References\TraasReference\obu1service.TraasReference.Simulation_getNetBoundaryResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Service References\TraasReference\obu1service.TraasReference.Simulation_getParkingEndingVehiclesIDListResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Service References\TraasReference\obu1service.TraasReference.Simulation_getParkingEndingVehiclesNumberResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Service References\TraasReference\obu1service.TraasReference.Simulation_getParkingStartingVehiclesIDListResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Service References\TraasReference\obu1service.TraasReference.Simulation_getParkingStartingVehiclesNumberResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Service References\TraasReference\obu1service.TraasReference.Simulation_getStartingTeleportIDListResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Service References\TraasReference\obu1service.TraasReference.Simulation_getStartingTeleportNumberResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Service References\TraasReference\obu1service.TraasReference.Simulation_getStopEndingVehiclesIDListResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Service References\TraasReference\obu1service.TraasReference.Simulation_getStopEndingVehiclesNumberResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Service References\TraasReference\obu1service.TraasReference.Simulation_getStopStartingVehiclesIDListResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Service References\TraasReference\obu1service.TraasReference.Simulation_getStopStartingVehiclesNumberResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Service References\TraasReference\obu1service.TraasReference.startResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Service References\TraasReference\obu1service.TraasReference.stopResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Service References\TraasReference\obu1service.TraasReference.sumoBoundingBox.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Service References\TraasReference\obu1service.TraasReference.sumoColor.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Service References\TraasReference\obu1service.TraasReference.sumoLink.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Service References\TraasReference\obu1service.TraasReference.sumoPosition2D.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Service References\TraasReference\obu1service.TraasReference.sumoPosition3D.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Service References\TraasReference\obu1service.TraasReference.sumoTLSController.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Service References\TraasReference\obu1service.TraasReference.Trafficlights_getCompleteRedYellowGreenDefinitionResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Service References\TraasReference\obu1service.TraasReference.Trafficlights_getControlledLanesResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Service References\TraasReference\obu1service.TraasReference.Trafficlights_getControlledLinksResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Service References\TraasReference\obu1service.TraasReference.Trafficlights_getIDCountResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Service References\TraasReference\obu1service.TraasReference.Trafficlights_getIDListResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Service References\TraasReference\obu1service.TraasReference.Trafficlights_getNextSwitchResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Service References\TraasReference\obu1service.TraasReference.Trafficlights_getPhaseDurationResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Service References\TraasReference\obu1service.TraasReference.Trafficlights_getPhaseResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Service References\TraasReference\obu1service.TraasReference.Trafficlights_getProgramResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Service References\TraasReference\obu1service.TraasReference.Trafficlights_getRedYellowGreenStateResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Service References\TraasReference\obu1service.TraasReference.Trafficlights_setCompleteRedYellowGreenDefinitionResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Service References\TraasReference\obu1service.TraasReference.Trafficlights_setPhaseDurationResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Service References\TraasReference\obu1service.TraasReference.Trafficlights_setPhaseResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Service References\TraasReference\obu1service.TraasReference.Trafficlights_setProgramResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Service References\TraasReference\obu1service.TraasReference.Trafficlights_setRedYellowGreenStateResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Service References\TraasReference\obu1service.TraasReference.TXT_outputResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Service References\TraasReference\obu1service.TraasReference.vehicleData.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Service References\TraasReference\obu1service.TraasReference.Vehicletype_getAccelResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Service References\TraasReference\obu1service.TraasReference.Vehicletype_getColorResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Service References\TraasReference\obu1service.TraasReference.Vehicletype_getDecelResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Service References\TraasReference\obu1service.TraasReference.Vehicletype_getEmissionClassResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Service References\TraasReference\obu1service.TraasReference.Vehicletype_getIDCountResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Service References\TraasReference\obu1service.TraasReference.Vehicletype_getIDListResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Service References\TraasReference\obu1service.TraasReference.Vehicletype_getImperfectionResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Service References\TraasReference\obu1service.TraasReference.Vehicletype_getLengthResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Service References\TraasReference\obu1service.TraasReference.Vehicletype_getMaxSpeedResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Service References\TraasReference\obu1service.TraasReference.Vehicletype_getMinGapResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Service References\TraasReference\obu1service.TraasReference.Vehicletype_getShapeClassResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Service References\TraasReference\obu1service.TraasReference.Vehicletype_getSpeedDeviationResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Service References\TraasReference\obu1service.TraasReference.Vehicletype_getSpeedFactorResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Service References\TraasReference\obu1service.TraasReference.Vehicletype_getTauResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Service References\TraasReference\obu1service.TraasReference.Vehicletype_getVehicleClassResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Service References\TraasReference\obu1service.TraasReference.Vehicletype_getWidthResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Service References\TraasReference\obu1service.TraasReference.Vehicletype_setAccelResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Service References\TraasReference\obu1service.TraasReference.Vehicletype_setColorResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Service References\TraasReference\obu1service.TraasReference.Vehicletype_setDecelResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Service References\TraasReference\obu1service.TraasReference.Vehicletype_setEmissionClassResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Service References\TraasReference\obu1service.TraasReference.Vehicletype_setImperfectionResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Service References\TraasReference\obu1service.TraasReference.Vehicletype_setLengthResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Service References\TraasReference\obu1service.TraasReference.Vehicletype_setMaxSpeedResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Service References\TraasReference\obu1service.TraasReference.Vehicletype_setMinGapResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Service References\TraasReference\obu1service.TraasReference.Vehicletype_setShapeClassResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Service References\TraasReference\obu1service.TraasReference.Vehicletype_setSpeedDeviationResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Service References\TraasReference\obu1service.TraasReference.Vehicletype_setSpeedFactorResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Service References\TraasReference\obu1service.TraasReference.Vehicletype_setTauResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Service References\TraasReference\obu1service.TraasReference.Vehicletype_setVehicleClassResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Service References\TraasReference\obu1service.TraasReference.Vehicletype_setWidthResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Service References\TraasReference\obu1service.TraasReference.Vehicle_addResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Service References\TraasReference\obu1service.TraasReference.Vehicle_changeLaneResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Service References\TraasReference\obu1service.TraasReference.Vehicle_changeTargetResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Service References\TraasReference\obu1service.TraasReference.Vehicle_getAccelResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Service References\TraasReference\obu1service.TraasReference.Vehicle_getAdaptedTraveltimeResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Service References\TraasReference\obu1service.TraasReference.Vehicle_getAllowedSpeedResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Service References\TraasReference\obu1service.TraasReference.Vehicle_getAngleResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Service References\TraasReference\obu1service.TraasReference.Vehicle_getBestLanesResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Service References\TraasReference\obu1service.TraasReference.Vehicle_getCO2EmissionResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Service References\TraasReference\obu1service.TraasReference.Vehicle_getCOEmissionResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Service References\TraasReference\obu1service.TraasReference.Vehicle_getColorResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Service References\TraasReference\obu1service.TraasReference.Vehicle_getDecelResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Service References\TraasReference\obu1service.TraasReference.Vehicle_getDistanceResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Service References\TraasReference\obu1service.TraasReference.Vehicle_getDrivingDistance2DResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Service References\TraasReference\obu1service.TraasReference.Vehicle_getDrivingDistanceResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Service References\TraasReference\obu1service.TraasReference.Vehicle_getEffortResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Service References\TraasReference\obu1service.TraasReference.Vehicle_getElectricityConsumptionResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Service References\TraasReference\obu1service.TraasReference.Vehicle_getEmissionClassResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Service References\TraasReference\obu1service.TraasReference.Vehicle_getFuelConsumptionResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Service References\TraasReference\obu1service.TraasReference.Vehicle_getHCEmissionResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Service References\TraasReference\obu1service.TraasReference.Vehicle_getIDCountResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Service References\TraasReference\obu1service.TraasReference.Vehicle_getIDListResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Service References\TraasReference\obu1service.TraasReference.Vehicle_getImperfectionResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Service References\TraasReference\obu1service.TraasReference.Vehicle_getLaneIDResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Service References\TraasReference\obu1service.TraasReference.Vehicle_getLaneIndexResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Service References\TraasReference\obu1service.TraasReference.Vehicle_getLanePositionResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Service References\TraasReference\obu1service.TraasReference.Vehicle_getLeaderResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Service References\TraasReference\obu1service.TraasReference.Vehicle_getLengthResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Service References\TraasReference\obu1service.TraasReference.Vehicle_getMaxSpeedResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Service References\TraasReference\obu1service.TraasReference.Vehicle_getMinGapResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Service References\TraasReference\obu1service.TraasReference.Vehicle_getNoiseEmissionResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Service References\TraasReference\obu1service.TraasReference.Vehicle_getNOxEmissionResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Service References\TraasReference\obu1service.TraasReference.Vehicle_getPersonNumberResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Service References\TraasReference\obu1service.TraasReference.Vehicle_getPMxEmissionResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Service References\TraasReference\obu1service.TraasReference.Vehicle_getPosition3DResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Service References\TraasReference\obu1service.TraasReference.Vehicle_getPositionResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Service References\TraasReference\obu1service.TraasReference.Vehicle_getRoadIDResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Service References\TraasReference\obu1service.TraasReference.Vehicle_getRouteIDResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Service References\TraasReference\obu1service.TraasReference.Vehicle_getRouteResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Service References\TraasReference\obu1service.TraasReference.Vehicle_getShapeClassResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Service References\TraasReference\obu1service.TraasReference.Vehicle_getSignalsResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Service References\TraasReference\obu1service.TraasReference.Vehicle_getSlopeResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Service References\TraasReference\obu1service.TraasReference.Vehicle_getSpeedDeviationResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Service References\TraasReference\obu1service.TraasReference.Vehicle_getSpeedFactorResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Service References\TraasReference\obu1service.TraasReference.Vehicle_getSpeedModeResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Service References\TraasReference\obu1service.TraasReference.Vehicle_getSpeedResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Service References\TraasReference\obu1service.TraasReference.Vehicle_getSpeedWithoutTraCIResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Service References\TraasReference\obu1service.TraasReference.Vehicle_getTauResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Service References\TraasReference\obu1service.TraasReference.Vehicle_getTypeIDResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Service References\TraasReference\obu1service.TraasReference.Vehicle_getVehicleClassResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Service References\TraasReference\obu1service.TraasReference.Vehicle_getWaitingTimeResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Service References\TraasReference\obu1service.TraasReference.Vehicle_getWidthResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Service References\TraasReference\obu1service.TraasReference.Vehicle_isRouteValidResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Service References\TraasReference\obu1service.TraasReference.Vehicle_moveToResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Service References\TraasReference\obu1service.TraasReference.Vehicle_removeResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Service References\TraasReference\obu1service.TraasReference.Vehicle_rerouteEffortResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Service References\TraasReference\obu1service.TraasReference.Vehicle_rerouteTraveltimeResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Service References\TraasReference\obu1service.TraasReference.Vehicle_resumeResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Service References\TraasReference\obu1service.TraasReference.Vehicle_setAccelResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Service References\TraasReference\obu1service.TraasReference.Vehicle_setAdaptedTraveltimeResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Service References\TraasReference\obu1service.TraasReference.Vehicle_setColorResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Service References\TraasReference\obu1service.TraasReference.Vehicle_setDecelResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Service References\TraasReference\obu1service.TraasReference.Vehicle_setEffortResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Service References\TraasReference\obu1service.TraasReference.Vehicle_setEmissionClassResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Service References\TraasReference\obu1service.TraasReference.Vehicle_setImperfectionResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Service References\TraasReference\obu1service.TraasReference.Vehicle_setLaneChangeModeResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Service References\TraasReference\obu1service.TraasReference.Vehicle_setLengthResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Service References\TraasReference\obu1service.TraasReference.Vehicle_setMaxSpeedResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Service References\TraasReference\obu1service.TraasReference.Vehicle_setMinGapResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Service References\TraasReference\obu1service.TraasReference.Vehicle_setRouteIDResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Service References\TraasReference\obu1service.TraasReference.Vehicle_setRouteResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Service References\TraasReference\obu1service.TraasReference.Vehicle_setShapeClassResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Service References\TraasReference\obu1service.TraasReference.Vehicle_setSignalsResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Service References\TraasReference\obu1service.TraasReference.Vehicle_setSpeedDeviationResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Service References\TraasReference\obu1service.TraasReference.Vehicle_setSpeedFactorResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Service References\TraasReference\obu1service.TraasReference.Vehicle_setSpeedResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Service References\TraasReference\obu1service.TraasReference.Vehicle_setStopResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Service References\TraasReference\obu1service.TraasReference.Vehicle_setTauResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Service References\TraasReference\obu1service.TraasReference.Vehicle_setTypeResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Service References\TraasReference\obu1service.TraasReference.Vehicle_setVehicleClassResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Service References\TraasReference\obu1service.TraasReference.Vehicle_setWidthResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Service References\TraasReference\obu1service.TraasReference.Vehicle_slowDownResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Service References\TraasReference\obu1service.TraasReference.versionResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <None Include="Service References\TraasReference\Reference.svcmap">
+      <Generator>WCF Proxy Generator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
+    <Content Include="Services\Obu1Rest.svc" />
+    <Content Include="Services\Obu1Service.svc" />
+    <Content Include="Web.config">
+      <SubType>Designer</SubType>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="DataContracts\AverageSpeed.cs" />
+    <Compile Include="DataContracts\Emissions.cs" />
+    <Compile Include="DataContracts\MaxSpeed.cs" />
+    <Compile Include="DataContracts\Position.cs" />
+    <Compile Include="DataContracts\State.cs" />
+    <Compile Include="DataContracts\VehicleInformation.cs" />
+    <Compile Include="ServiceContracts\Obu1Rest.cs" />
+    <Compile Include="Service References\TraasReference\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Compile>
+    <Compile Include="Services\Obu1Rest.svc.cs">
+      <DependentUpon>Obu1Rest.svc</DependentUpon>
+    </Compile>
+    <Compile Include="Services\Obu1Service.svc.cs">
+      <DependentUpon>Obu1Service.svc</DependentUpon>
+    </Compile>
+    <Compile Include="ServiceContracts\Obu1Service.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup />
+  <ItemGroup>
+    <Content Include="packages.config" />
+    <Content Include="ApplicationInsights.config">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <SubType>Designer</SubType>
+    </Content>
+    <None Include="Service References\TraasReference\TraasWS1.wsdl" />
+    <None Include="Service References\TraasReference\TRAAS_WS1.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Web.Debug.config">
+      <DependentUpon>Web.config</DependentUpon>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Web.Release.config">
+      <DependentUpon>Web.config</DependentUpon>
+      <SubType>Designer</SubType>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadata Include="Service References\" />
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadataStorage Include="Service References\TraasReference\" />
+  </ItemGroup>
+  <PropertyGroup>
+    <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
+    <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
+  </PropertyGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <Import Project="$(VSToolsPath)\WebApplications\Microsoft.WebApplication.targets" Condition="'$(VSToolsPath)' != ''" />
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" Condition="false" />
+  <ProjectExtensions>
+    <VisualStudio>
+      <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
+        <WebProjectProperties>
+          <UseIIS>False</UseIIS>
+          <AutoAssignPort>True</AutoAssignPort>
+          <DevelopmentServerPort>58500</DevelopmentServerPort>
+          <DevelopmentServerVPath>/</DevelopmentServerVPath>
+          <IISUrl>http://localhost:58500/</IISUrl>
+          <NTLMAuthentication>False</NTLMAuthentication>
+          <UseCustomServer>False</UseCustomServer>
+          <CustomServerUrl>
+          </CustomServerUrl>
+          <SaveServerSettingsInUserFile>False</SaveServerSettingsInUserFile>
+        </WebProjectProperties>
+      </FlavorProperties>
+    </VisualStudio>
+  </ProjectExtensions>
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>
